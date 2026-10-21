@@ -15,6 +15,15 @@ const ESCENARIOS = {
                      cuerpo: JSON.stringify({ producto_id: azar(1, 200000), cantidad: azar(1, 5) }) }),
   catalogo: () => ({ metodo: 'GET', ruta: `/catalogo?desde=${azar(0, 199000)}` }),
 };
+// Tráfico realista de una tienda: 60% consultas, 15% logins, 15% pedidos, 10% catálogo.
+// Math.random por petición: la mezcla se cumple en promedio sobre miles de peticiones.
+ESCENARIOS.mixto = () => {
+  const r = Math.random();
+  if (r < 0.60) return ESCENARIOS.producto();
+  if (r < 0.75) return ESCENARIOS.hash();
+  if (r < 0.90) return ESCENARIOS.pedido();
+  return ESCENARIOS.catalogo();
+};
 
 function percentil(ordenado, p) {
   if (!ordenado.length) return 0;

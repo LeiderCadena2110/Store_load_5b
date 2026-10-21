@@ -64,11 +64,9 @@ Y en `datos/metricas/` queda un CSV con **una fila por segundo** de recursos del
 
 ### Si están en Windows
 
-CPU, memoria y red se miden igual. El disco (IOPS, MB/s) se lee de Linux, así que en Windows esas columnas salen vacías. Mídanlo en paralelo con el contador de Windows, en otra terminal, mientras corre el experimento:
+CPU, memoria y red se miden igual. El disco (IOPS, MB/s) se lee de Linux, así que en Windows esas columnas salen vacías. Hay dos salidas: correr la API en Docker (paso 3), que es Linux, o tomar el disco con `medir-windows.ps1` mientras corre el experimento (ver `ACTIVIDAD4.md`).
 
-```powershell
-typeperf "\PhysicalDisk(_Total)\Disk Writes/sec" "\PhysicalDisk(_Total)\Disk Write Bytes/sec" "\PhysicalDisk(_Total)\Disk Reads/sec" -si 1 -o datos\disco-windows.csv
-```
+> `typeperf` con nombres de contador en inglés falla si Windows está en español; por eso el script usa clases CIM.
 
 ---
 

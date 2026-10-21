@@ -1,0 +1,14 @@
+# Opción 3: contenedor con límites definidos por ustedes.
+# Cambien CPUS y MEMORIA para cada corrida, p. ej.:  CPUS=1 MEMORIA=256m docker compose up --build
+services:
+  api:
+    build: .
+    ports:
+      - "3000:3000"
+    cpus: ${CPUS:-1}
+    mem_limit: ${MEMORIA:-512m}
+    volumes:
+      - bd:/bd                         # base de datos en volumen de Docker (disco real del contenedor)
+      - ./datos/metricas:/app/datos/metricas   # las métricas salen a su carpeta
+volumes:
+  bd:

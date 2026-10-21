@@ -1,0 +1,13 @@
+{
+  "name": "tienda-minima-carga",
+  "version": "1.0.0",
+  "description": "API minima (4 endpoints + SQLite) para el proyecto 'Dimensionar una carga real'",
+  "main": "servidor.js",
+  "scripts": {
+    "start": "node --no-warnings servidor.js",
+    "prueba-rapida": "node experimento.js prueba 20",
+    "experimento": "node experimento.js"
+  },
+  "engines": { "node": ">=22.13" },
+  "license": "MIT"
+}
